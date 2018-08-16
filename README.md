@@ -84,7 +84,7 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
 
 ### Services running inside the VM
-If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps the MUST run on localhost (127.0.0.1)!
+If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps they MUST run on localhost (127.0.0.1)!
 
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
