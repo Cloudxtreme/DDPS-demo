@@ -74,6 +74,12 @@ The first time you provision it will take a long time, since you need to fetch t
 
     $ vagrant ssh
 
+### If you need to reboot the VM use
+
+    $ vagrant reload
+
+Don't reboot the VM from inside the VM! It wont load the Vagrantfile when booting, and mounting /vagrant and portforwarding wont work.
+
 ### When you are done, you can halt/shutdown the VirtualBox VM with
 
     $ vagrant halt
@@ -84,6 +90,8 @@ You can also just halt/shutdown the image from inside the VM.
 
     $ cd [This git repo]
     $ vagrant up
+
+Do not start the machine from VirtualBox. Always start the VM using `vagrant up`.
 
 ### If you want to start over with a fresh version of the VM (a new provisioning)
 
@@ -100,8 +108,8 @@ If you are responsible for mantaining the DDPS-demo VM, the following are nice t
 ### Colors during the Vagrant provisioning
 Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
 
-### ubuntu-xenial-16.04-cloudimg-console.log 
-Check the ubuntu-console.log for errors during boot.
+### Errors during boot
+Check the ubuntu-console.log for errors during boot. It will be located in this directory.
 
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
@@ -132,7 +140,7 @@ Make sure your service is running on: 127.0.0.1 or ::1 (IPv6) and that it is lis
 NGINX (and SSH) are the only exceptions to this rule.
 
 ### Debug networking issues
-How can I that the VM receives my network traffic, when I type http://127.0.0.1:8080 into my browser?
+How can I see that the VM receives my network traffic, when I type http://127.0.0.1:8080 into my browser?
 
     $ vagrant ssh                             # log in to the VM
     $ sudo tcpdump -ni enp0s3 tcp port 8080   # tcpdump for traffic on TCP port 8080, change port number if you need another port

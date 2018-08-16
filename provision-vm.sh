@@ -41,8 +41,8 @@ echo "########## Installing: API-app ##########"
 echo "########## Installing: WEB-app ##########"
   ${VAGRANTDIR}/files/web-app/install.sh
 
-echo "#####################"
-echo "Installation complete"
-echo "#####################"
+echo "###########################################################"
+echo "Installation complete: Run $ 'vagrant reload' to reboot VM!"
+echo "###########################################################"
 
 exit 0
