@@ -1,7 +1,7 @@
 # DDPS demo of the WEB and API-app
 This repository builds VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
 
-## Requiremnts
+### Requiremnts
 You need the following installed:
 
   * [VirtualBox](https://www.virtualbox.org)
@@ -11,10 +11,10 @@ They both work on Windows, MacOS and Linux -- are both free, and easy to install
 
 To see a demonstration of the WEB-app and the API-app follow the instructions below.
 
-## WEB-app demo
+### WEB-app demo
 Type: http://127.0.0.1:8080 into your browser.
 
-## API-app demo
+### API-app demo
 Type: http://127.0.0.1:9090 into your browser.
 
 
@@ -25,18 +25,18 @@ The configuration of the VM is done from the Vagrantfile in this directory. The 
 
 The project contains the following folders:
 
-$ tree
-├── files
-│   ├── api-app
-│   ├── db2dps
-│   ├── exabgp
-│   ├── nginx
-│   ├── node
-│   ├── pgpool
-│   ├── postgresql
-│   └── web-app
-└── scripts
-    └── vm-install.d
+    $ tree
+    ├── files
+    │   ├── api-app
+    │   ├── db2dps
+    │   ├── exabgp
+    │   ├── nginx
+    │   ├── node
+    │   ├── pgpool
+    │   ├── postgresql
+    │   └── web-app
+    └── scripts
+        └── vm-install.d
 
 The two top folders are scripts/ and files/. The scripts folder contains all the scripts for installing, and configuring all the applications inside the VM. The files folder contains all the files need to configure the applications.
 
@@ -46,7 +46,7 @@ All services running inside the VM must run on localhost (since the IP of the VM
 ## Using Vagrant
 After you have installed VirtualBox and Vagrant, you can provision a demo VM from this directory (using the Vagrantfile).
 
-*** It's important that you standing the the directory containing the Vagrantfile!**
+** It's important that you standing the the directory containing the Vagrantfile! **
 
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
@@ -83,7 +83,7 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 # Debugging for developers
 If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
 
-## Got root?
+### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
 
     $ vagrant ssh
@@ -91,7 +91,7 @@ When using Vagrant you login as the user vagrant. If you need root access the va
 
 And you will have a root shell (bash).
 
-## Colors during the Vagrant provisioning
+### Colors during the Vagrant provisioning
 Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
 
 
