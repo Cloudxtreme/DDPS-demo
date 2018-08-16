@@ -97,8 +97,11 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 # Debugging for developers
 If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
 
-### Services running inside the VM
-If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps they MUST run on localhost (127.0.0.1)!
+### Colors during the Vagrant provisioning
+Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
+
+### ubuntu-xenial-16.04-cloudimg-console.log 
+Check the ubuntu-console.log for errors during boot.
 
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
@@ -108,8 +111,31 @@ When using Vagrant you login as the user vagrant. If you need root access the va
 
 And you will have a root shell (bash).
 
-### Colors during the Vagrant provisioning
-Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
+### Check /var/log inside the VM
+Make sure to look in /var/log for logfiles if you are having trouble with installing or configuring your application.
 
-### ubuntu-xenial-16.04-cloudimg-console.log 
-Check the ubuntu-console.log for errors during boot.
+    $ vagrant ssh
+    $ sudo bash
+    $ cd /var/log
+    $ ls -lart
+
+Check the newest files, specific application folders or syslog if in doubt.
+
+### Services running inside the VM
+If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps they MUST run on localhost (127.0.0.1)!
+
+    $ vagrant ssh              # log into the VM
+    $ netstat -an |grep tcp    # list all TCP services running inside the VM
+
+Make sure your service is running on: 127.0.0.1 or ::1 (IPv6) and that it is listing on the correct port!
+
+NGINX (and SSH) are the only exceptions to this rule.
+
+### Debug networking issues
+How can I that the VM receives my network traffic, when I type http://127.0.0.1:8080 into my browser?
+
+    $ vagrant ssh                             # log in to the VM
+    $ sudo tcpdump -ni enp0s3 tcp port 8080   # tcpdump for traffic on TCP port 8080, change port number if you need another port
+    type http://127.0.0.1:8080 into your browser or press reload
+
+You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see that the ports you need are forwarded.
