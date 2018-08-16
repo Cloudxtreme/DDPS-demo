@@ -1,5 +1,5 @@
 # DDPS demo of the WEB and API-app
-This repository builds VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's web-gui and web-api.
+This repository builds VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
 
 ## Requiremnts
 You need the following installed:
@@ -14,7 +14,7 @@ To see a demonstration of the WEB-app and the API-app follow the instructions be
 ## WEB-app demo
 Type: http://127.0.0.1:8080 into your browser.
 
-## WEB-app demo
+## API-app demo
 Type: http://127.0.0.1:9090 into your browser.
 
 
