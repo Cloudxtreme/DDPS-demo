@@ -83,6 +83,9 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 # Debugging for developers
 If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
 
+### Services running inside the VM
+If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps the MUST run on localhost (127.0.0.1)!
+
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
 
@@ -94,4 +97,5 @@ And you will have a root shell (bash).
 ### Colors during the Vagrant provisioning
 Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
 
-
+### ubuntu-xenial-16.04-cloudimg-console.log 
+Check the ubuntu-console.log for errors during boot.
