@@ -19,7 +19,7 @@ Type: http://127.0.0.1:9090 into your browser.
 
 
 # Short introduction to Vagrant, and how this project is organized
-Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with text files.
+Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with just text files, and not worrying about the Hypervisor at all.
 
 The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file scripts/install.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the scripts/ and files/ folder are available inside the VM from /vagrant/scripts and /vagrant/files.
 
@@ -54,25 +54,44 @@ Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
     $ vagrant up
 
+The first time you provision it will take a long time, since you need to fetch the Vagrant box image (running Ubuntu) and confiure all the software inside the VM afterwards.
+
 ### When Vagrant is done provisioning the VM you can SSH into it with
 
     $ vagrant ssh
 
-### When you are done, you can halt/shutdown the VirtualBox image with
+### When you are done, you can halt/shutdown the VirtualBox VM with
 
     $ vagrant halt
 
 You can also just halt/shutdown the image from inside the VM.
 
-### Continue later with the same VM, and any change to the VM
+### Continue later with the same VM
 
     $ cd [This git repo]
     $ vagrant up
 
-### If you want to start over with a fresh version of the VM (new provision)
+### If you want to start over with a fresh version of the VM (a new provisioning)
 
     $ cd [This git repo]
     $ vagrant destroy
     $ vagrant up
 
 And a fresh new install is ready for you. All your changes to the old VM is gone!
+
+
+# Debugging for developers
+If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
+
+## Got root?
+When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
+
+    $ vagrant ssh
+    $ sudo bash
+
+And you will have a root shell (bash).
+
+## Colors during the Vagrant provisioning
+Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
+
+
