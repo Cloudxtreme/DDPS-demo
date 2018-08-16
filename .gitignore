@@ -1,2 +1,16 @@
+# Vi(m)
+**/*~
+**/*.bak
+**/*.sw[abcdefghijklmnop]
+
+# MacOS
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+
+# Vagrant
 .vagrant
+
+# Ubuntu
 ubuntu-xenial-16.04-cloudimg-console.log
