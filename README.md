@@ -152,4 +152,4 @@ How can I see that the VM receives my network traffic, when I type http://127.0.
     $ sudo tcpdump -ni enp0s3 tcp port 8080   # tcpdump for traffic on TCP port 8080, change port number if you need another port
     type http://127.0.0.1:8080 into your browser or press reload
 
-You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see that the ports you need are forwarded.
+You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see if the ports you need are forwarded.
