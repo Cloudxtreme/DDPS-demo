@@ -1,5 +1,5 @@
 # Files folder.
-This folder contains all the files we need for setting up a VM.
+This folder contains all the files we need for setting up a VM. Each application has it's own folder, where all the files for setting up to application are located.
 
 It contains the directories below:
 
@@ -9,8 +9,13 @@ It contains the directories below:
     ├── exabgp
     ├── nginx
     ├── node
-    ├── pgpool
+    ├── os-patches
+    ├── pgpool-II
     ├── postgresql
     └── web-app
 
-Each directory should contain the files need for configuring the application. The script for installing the application and configuring is located in the scripts/vm-install.d directory.
+The provision script provision-vm.sh controls which applications are installed and configured first. The order matters! 
+
+Each folder must contain an install script for installing and configuring the application. Please check the requirements for your application are working, before installing/configuring the application.
+
+For instance pgpool-II requires postgresql, so the postgresql/install_postgresql.sh must come before pgpool-II/install_pgpool-II.sh in the provision-vm.sh and the pgpool-II/install_pgpool-II.sh should check that postgresql is installed and configure correctly before configuring.

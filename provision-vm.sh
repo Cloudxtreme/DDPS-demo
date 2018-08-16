@@ -7,7 +7,7 @@ export DEBIAN_FRONTEND=noninteractive
 
 VAGRANTDIR=/vagrant
 
-echo "Executing each install-script in scripts/install.d"
+echo "Executing each install-script in files"
 
 cd ${VAGRANTDIR}/scripts/vm-install.d
 find . -type f -name '*.sh' | sort -n | while read SHELLSCRIPT

@@ -27,6 +27,6 @@ Vagrant.configure("2") do |config|
         vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
     end
 
-    # Use the install script in ./scripts/install.sh to provision the VM
-    config.vm.provision "shell", path: "scripts/install.sh"
+    # Use the install script provision-vm.sh to provision the VM
+    config.vm.provision "shell", path: "provision-vm.sh"
 end

@@ -23,22 +23,36 @@ Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox
 
 The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file scripts/install.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the scripts/ and files/ folder are available inside the VM from /vagrant/scripts and /vagrant/files.
 
-The project contains the following folders:
+The project contains the following important files and folders:
 
-    $ tree
-    ├── files
-    │   ├── api-app
-    │   ├── db2dps
-    │   ├── exabgp
-    │   ├── nginx
-    │   ├── node
-    │   ├── pgpool
-    │   ├── postgresql
-    │   └── web-app
-    └── scripts
-        └── vm-install.d
+$ tree
+├── README.md   # This file!
+├── Vagrantfile
+├── files
+│   ├── README.md
+│   ├── api-app
+│   │   └── install_api-app.sh
+│   ├── db2dps
+│   │   └── install_db2dps.sh
+│   ├── exabgp
+│   │   └── install_exabgp.sh
+│   ├── nginx
+│   │   └── install_nginx.sh
+│   ├── node
+│   │   └── install_node.sh
+│   ├── os-patches
+│   │   └── install_patches.sh
+│   ├── pgpool-II
+│   │   └── install_pgpool-II.sh
+│   ├── postgresql
+│   │   └── install_postgresql.sh
+│   └── web-app
+│       └── install_web-app.sh
+├── provision-vm.sh
 
-The two top folders are scripts/ and files/. The scripts folder contains all the scripts for installing, and configuring all the applications inside the VM. The files folder contains all the files need to configure the applications.
+The files/ folders contains all the scripts and files for installing, and configuring all the applications running inside the VM.
+
+The provision-vm.sh is called from the Vagrantfile and configures all the applications in a specific order.
 
 All services running inside the VM must run on localhost (since the IP of the VM is dynamic), and we use the Vagrantfile to forward them to the VM (TCP port 8080 and 9090).
 
