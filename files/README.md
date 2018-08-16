@@ -16,6 +16,6 @@ It contains the directories below:
 
 The provision script provision-vm.sh controls which applications are installed and configured first. The order matters! 
 
-Each folder must contain an install script for installing and configuring the application. Please check the requirements for your application are working, before installing/configuring the application.
+Each folder must contain an install.sh bash-script for installing and configuring the application. Please check the requirements for your application are meet, before installing/configuring the application.
 
-For instance pgpool-II requires postgresql, so the postgresql/install_postgresql.sh must come before pgpool-II/install_pgpool-II.sh in the provision-vm.sh and the pgpool-II/install_pgpool-II.sh should check that postgresql is installed and configure correctly before configuring.
+For instance pgpool-II requires postgresql, so the postgresql/install.sh must come before pgpool-II/install.sh in the provision-vm.sh and the pgpool-II/install.sh should check that postgresql is installed and configured correctly before installing and configuring.

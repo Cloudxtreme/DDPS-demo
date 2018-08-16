@@ -31,28 +31,28 @@ $ tree
 ├── files
 │   ├── README.md
 │   ├── api-app
-│   │   └── install_api-app.sh
+│   │   └── install.sh
 │   ├── db2dps
-│   │   └── install_db2dps.sh
+│   │   └── install.sh
 │   ├── exabgp
-│   │   └── install_exabgp.sh
+│   │   └── install.sh
 │   ├── nginx
-│   │   └── install_nginx.sh
+│   │   └── install.sh
 │   ├── node
-│   │   └── install_node.sh
+│   │   └── install.sh
 │   ├── os-patches
-│   │   └── install_patches.sh
+│   │   └── install.sh
 │   ├── pgpool-II
-│   │   └── install_pgpool-II.sh
+│   │   └── install.sh
 │   ├── postgresql
-│   │   └── install_postgresql.sh
+│   │   └── install.sh
 │   └── web-app
-│       └── install_web-app.sh
+│       └── install.sh
 ├── provision-vm.sh
 
 The files/ folders contains all the scripts and files for installing, and configuring all the applications running inside the VM.
 
-The provision-vm.sh is called from the Vagrantfile and configures all the applications in a specific order.
+The provision-vm.sh is called from the Vagrantfile, and configures all the applications in a specific order.
 
 All services running inside the VM must run on localhost (since the IP of the VM is dynamic), and we use the Vagrantfile to forward them to the VM (TCP port 8080 and 9090).
 
