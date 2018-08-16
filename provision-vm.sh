@@ -1,7 +1,6 @@
 #!/bin/bash
 #
-# This script runs every install script in install.d/
-# It logs output from each script to /var/log on the VM
+# This script provisions a DDPS-demo VM from install.sh scripts in files/${application}/
 
 export DEBIAN_FRONTEND=noninteractive
 
@@ -10,6 +9,8 @@ VAGRANTDIR=/vagrant
 
 
 # Installing and configuring all the applications for running DDPS-demo
+# The order is important, and executed from the top down.
+
 echo "Executing each install.sh script in all the folders in files/"
 echo "#############################################################"
 
