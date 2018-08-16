@@ -21,34 +21,34 @@ Type: http://127.0.0.1:9090 into your browser.
 # Short introduction to Vagrant, and how this project is organized
 Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with just text files, and not worrying about the Hypervisor at all.
 
-The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file scripts/install.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the scripts/ and files/ folder are available inside the VM from /vagrant/scripts and /vagrant/files.
+The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM.
 
 The project contains the following important files and folders:
 
-$ tree
-├── README.md   # This file!
-├── Vagrantfile
-├── files
-│   ├── README.md
-│   ├── api-app
-│   │   └── install.sh
-│   ├── db2dps
-│   │   └── install.sh
-│   ├── exabgp
-│   │   └── install.sh
-│   ├── nginx
-│   │   └── install.sh
-│   ├── node
-│   │   └── install.sh
-│   ├── os-patches
-│   │   └── install.sh
-│   ├── pgpool-II
-│   │   └── install.sh
-│   ├── postgresql
-│   │   └── install.sh
-│   └── web-app
-│       └── install.sh
-├── provision-vm.sh
+    $ tree
+    ├── README.md
+    ├── Vagrantfile
+    ├── files
+    │   ├── README.md
+    │   ├── api-app
+    │   │   └── install.sh
+    │   ├── db2dps
+    │   │   └── install.sh
+    │   ├── exabgp
+    │   │   └── install.sh
+    │   ├── nginx
+    │   │   └── install.sh
+    │   ├── node
+    │   │   └── install.sh
+    │   ├── os-patches
+    │   │   └── install.sh
+    │   ├── pgpool-II
+    │   │   └── install.sh
+    │   ├── postgresql
+    │   │   └── install.sh
+    │   └── web-app
+    │       └── install.sh
+    └── provision-vm.sh
 
 The files/ folders contains all the scripts and files for installing, and configuring all the applications running inside the VM.
 

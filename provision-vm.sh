@@ -14,31 +14,31 @@ echo "Executing each install.sh script in all the folders in files/"
 echo "#############################################################"
 
 echo "########## Installing: OS Patches ##########"
-  ${VAGRANTDIR}/os-patches/install.sh
+  ${VAGRANTDIR}/files/os-patches/install.sh
 
 echo "########## Installing: PostgreSQL ##########"
-  ${VAGRANTDIR}/postgresql/install.sh
+  ${VAGRANTDIR}/files/postgresql/install.sh
 
 echo "########## Installing: Pgpool-II ##########"
-  ${VAGRANTDIR}/pgpool-II/install.sh
+  ${VAGRANTDIR}/files/pgpool-II/install.sh
 
 echo "########## Installing: NGINX ##########"
-  ${VAGRANTDIR}/nginx/install.sh
+  ${VAGRANTDIR}/files/nginx/install.sh
 
 echo "########## Installing: Node.js ##########"
-  ${VAGRANTDIR}/node/install.sh
+  ${VAGRANTDIR}/files/node/install.sh
 
 echo "########## Installing: ExaBGP ##########"
-  ${VAGRANTDIR}/exabgp/install.sh
+  ${VAGRANTDIR}/files/exabgp/install.sh
 
 echo "########## Installing: db2dps ##########"
-  ${VAGRANTDIR}/db2dps/install.sh
+  ${VAGRANTDIR}/files/db2dps/install.sh
 
 echo "########## Installing: API-app ##########"
-  ${VAGRANTDIR}/api-app/install.sh
+  ${VAGRANTDIR}/files/api-app/install.sh
 
 echo "########## Installing: WEB-app ##########"
-  ${VAGRANTDIR}/web-app/install.sh
+  ${VAGRANTDIR}/files/web-app/install.sh
 
 echo "#####################"
 echo "Installation complete"
