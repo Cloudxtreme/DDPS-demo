@@ -101,6 +101,12 @@ Do not start the machine from VirtualBox. Always start the VM using `vagrant up`
 
 And a fresh new install is ready for you. All your changes to the old VM is gone!
 
+### If you need to quickly reprovisioin for testing
+
+    $ vagrant provision
+
+It will rerun all the install.sh files. Please make sure that all install.sh scripts are idempotent.
+
 
 # Debugging for developers
 If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
@@ -137,7 +143,7 @@ If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js 
 
 Make sure your service is running on: 127.0.0.1 or ::1 (IPv6) and that it is listing on the correct port!
 
-NGINX (and SSH) are the only exceptions to this rule.
+NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps.
 
 ### Debug networking issues
 How can I see that the VM receives my network traffic, when I type http://127.0.0.1:8080 into my browser?
