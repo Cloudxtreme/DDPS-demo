@@ -1,8 +1,8 @@
 # DDPS demo of the WEB and API-app
-This repository builds VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
+This repository builds a VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
 
 ### Requiremnts
-You need the following installed:
+You need the following elements installed:
 
   * [VirtualBox](https://www.virtualbox.org)
   * [Vagrant](https://www.vagrantup.com)
@@ -50,7 +50,7 @@ The project contains the following important files and folders:
     │       └── install.sh
     └── provision-vm.sh
 
-The files/ folder contains all the scripts and files for installing, and configuring all the applications running inside the VM. Each application have their own catalog.
+The files/ folder contains all the scripts and files for installing and configuring all the applications running inside the VM. Each application have their own catalog.
 
 The provision-vm.sh is called from the Vagrantfile, and configures all the applications in a specific order.
 
