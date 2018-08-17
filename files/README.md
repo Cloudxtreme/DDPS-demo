@@ -10,6 +10,7 @@ It contains the directories below:
     ├── nginx
     ├── node
     ├── os-patches
+    ├── os-utilities
     ├── pgpool-II
     ├── postgresql
     └── web-app
