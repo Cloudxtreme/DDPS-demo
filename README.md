@@ -60,7 +60,7 @@ All services running inside the VM must run on localhost (since the IP of the VM
 ## Using Vagrant
 After you have installed VirtualBox and Vagrant, you can provision a demo VM from this directory (using the Vagrantfile).
 
-** It's important that you standing the directory containing the Vagrantfile! **
+** It's important that your standing in the directory containing the Vagrantfile! **
 
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
@@ -112,7 +112,12 @@ It will rerun all the install.sh files. Please make sure that all install.sh scr
 If you are responsible for maintaining the DDPS-demo VM, the following are nice to know.
 
 ### Colors during the Vagrant provisioning
-Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
+Watch the output when running `$ vagrant up`. Look for the colors in your terminal.
+
+  * NORMAL: Output from the Vagrant box image (made by Ubuntu).
+  * YELLOW: Output from provisioning the VM (all the install.sh scritps).
+  * RED:    Error of some kind (please fix)!
+
 
 ### Errors during boot
 Check the ubuntu-console.log for errors during boot. It will be located in this directory.
@@ -126,7 +131,7 @@ When using Vagrant you login as the user vagrant. If you need root access the va
 And you will have a root shell (bash).
 
 ### Check /var/log inside the VM
-Make sure to look in /var/log for logfiles if you are having trouble with installing or configuring your application.
+Make sure to look in /var/log for logfiles in the VM.
 
     $ vagrant ssh
     $ sudo bash
@@ -143,13 +148,57 @@ If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js 
 
 Make sure your service is running on: 127.0.0.1 or ::1 (IPv6) and that it is listing on the correct port!
 
-NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps.
+NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `vagrant ssh` might not work.
 
-### Debug networking issues
-How can I see that the VM receives my network traffic, when I type http://127.0.0.1:8080 into my browser?
+### Debug network issues
+How can I see that the VM receives my network traffic? 
+
+When typing http://127.0.0.1:8080 into a browser, and you want to verify that the VM receives the traffic?
 
     $ vagrant ssh                             # log in to the VM
     $ sudo tcpdump -ni enp0s3 tcp port 8080   # tcpdump for traffic on TCP port 8080, change port number if you need another port
     type http://127.0.0.1:8080 into your browser or press reload
 
 You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see if the ports you need are forwarded.
+
+You can also check that the VM correct forwards ports on localhost with.
+
+    $ vagrant ssh          # log in to the VM
+    $ sudo tcpdump -ni lo  # tcpdump all traffic on localhost
+
+## Vagrant specific issues
+
+### Debug Vagrant
+If you need more debug output from Vagrant (on Linux and MacOS).
+
+    $ vagrant up --debug                  # debug output to screen
+    $ vagrant up --debug &> vagrant.log   # debug output to vagrant.log file
+
+On Windows.
+
+    $ vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"
+
+### Working with Vagrant Box images
+    * List all Vagrant Box images.
+
+      $ vagrant box list
+
+    * Update all Vagrant Box images.
+
+      $ vagrant box update
+
+    * Remove old Vagrant Box images. 
+
+      $ vagrant box prune
+
+    * See all options for working with Vagrant Box images.
+
+      $ vagrant box
+
+### Update Vagrant plugins
+
+    $ vagrant plugin update
+
+### Vagrant version, will also tell if you need to update Vagrant
+
+    $ vagrant version
