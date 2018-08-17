@@ -19,6 +19,9 @@ echo
 echo "########## Installing: OS Patches ##########"
   /bin/bash ${VAGRANTDIR}/files/os-patches/install.sh
 echo
+echo "########## Installing: OS Utilities ##########"
+  /bin/bash ${VAGRANTDIR}/files/os-utilities/install.sh
+echo
 echo "########## Installing: PostgreSQL ##########"
   /bin/bash ${VAGRANTDIR}/files/postgresql/install.sh
 echo
