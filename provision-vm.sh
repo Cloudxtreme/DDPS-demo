@@ -8,8 +8,9 @@ export DEBIAN_FRONTEND=noninteractive
 # Root directory in the git repo is mounted inside the VM in
 VAGRANTDIR=/vagrant
 
-# Installing and configuring all the applications for running DDPS-demo
+# Installing all the applications for running DDPS-demo
 # The order is important, and executed from the top down.
+# Some applications have dependencies, that require a later config step.
 
 echo
 echo "#########################################################"
@@ -48,14 +49,14 @@ echo "########## Installing: WEB-app ##########"
 echo
 
 
-echo "###########################################################"
-echo "# Executing each configure.sh script for each application #"
-echo "###########################################################"
+echo "##########################################################"
+echo "# Configuring some applications from configure.sh script #"
+echo "##########################################################"
 
-# postgres and pgpool2 required ahead of database restore
+# Database restore requires both PostgreSQL and pgpool-II.
 if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
 then
-    echo "########## Installing: PostgreSQL ##########"
+    echo "########## Configuring: PostgreSQL ##########"
       /bin/bash ${VAGRANTDIR}/files/postgresql/configure.sh
     echo
 fi
