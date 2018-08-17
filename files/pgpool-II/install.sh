@@ -2,7 +2,7 @@
 #
 # Install the latest version of pgpool2
 #
-set -x
+# set -x
 
 echo "Installing pgpool ..."
 
@@ -13,7 +13,7 @@ PGPOOL='pgpool2'
 INSTALLATIONPATH=$(pwd)
 CONFIGTMPL='$INSTALLATIONPATH/pgpool.conf.tmpl'
 
-$INSTALLATIONPATH/pre_install.sh
+#$INSTALLATIONPATH/pre_install.sh
 
 export DEBIAN_FRONTEND=noninteractive
 
