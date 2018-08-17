@@ -98,7 +98,7 @@ function create_example_database()
     gunzip -c $EXAMPLE_DATA | sed "s/__PASSWORD__/${dbpass}/g" > /tmp/test-data.sql
     chown postgres /tmp/test-data.sql
 
-    echo 'psql -d postgres -f /tmp/test-data.sql' | su postgres > /dev/null
+    echo 'psql -d postgres -f /tmp/test-data.sql' | su postgres > /dev/null 2>/dev/null
     /bin/rm -f /tmp/test-data.sql
 
     #for dbuser in ${dbusers}
