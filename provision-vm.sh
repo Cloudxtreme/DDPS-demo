@@ -53,6 +53,13 @@ echo "##########################################################"
 echo "# Configuring some applications from configure.sh script #"
 echo "##########################################################"
 
+# Pgpool-II configuration for one host
+if [[ -f ${VAGRANTDIR}/files/pgpool-II/configure.sh  ]]; 
+then
+  echo "########## Configuring: Pgpool-II ##########"
+  /bin/bash ${VAGRANTDIR}/files/pgpool-II/configure.sh
+fi
+
 # Database restore requires both PostgreSQL and pgpool-II.
 if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
 then
