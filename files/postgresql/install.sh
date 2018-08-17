@@ -32,6 +32,17 @@ export LC_CTYPE="C"
 #
 # functions
 #
+function savefile()
+{
+	if [ ! -f "$1" ]; then
+		echo "$MYNAME: program error in function savefile, file '$1' not found"
+		exit 0
+	fi
+	if [ ! -f "$1".org ]; then
+		cp "$1" "$1".org
+	fi
+}
+
 function install_postgresql()
 {
 	# see https://www.postgresql.org/about/news/1432/

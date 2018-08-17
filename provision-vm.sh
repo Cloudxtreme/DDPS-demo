@@ -53,7 +53,7 @@ echo "# Executing each configure.sh script for each application #"
 echo "###########################################################"
 
 # postgres and pgpool2 required ahead of database restore
-if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
+if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
 then
     echo "########## Installing: PostgreSQL ##########"
       /bin/bash ${VAGRANTDIR}/files/postgresql/configure.sh
