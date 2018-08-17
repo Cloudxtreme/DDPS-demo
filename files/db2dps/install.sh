@@ -200,7 +200,7 @@ function install_db2dps_pkg()
 
         echo "reading and installing dependencies"
         apt-get install -y `dpkg -I ${MYDIR}/${DEB} |sed '/Depends:/!d; s/Depends://; s/,//g'` > /dev/null && echo "done successfully"
-        dpkg -i ${MYDIR}/${DEB} && echo "done successfully"
+        dpkg -i ${MYDIR}/${DEB} 2>/dev/null 1>/dev/null
     )
 }
 

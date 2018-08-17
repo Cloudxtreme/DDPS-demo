@@ -44,7 +44,7 @@ function savefile()
 
 function install_exabgp()
 {
-    apt-get -y install exabgp socat  >$TMPFILE
+    apt-get -y install exabgp socat  >$TMPFILE 2>/dev/null
     case $? in
         0)  echo "done"
             ;;
@@ -64,9 +64,9 @@ function apply_exabgp_config()
     cp $MYDIR/exabgp.env               /etc/exabgp/
     cp $MYDIR/runsocat.sh              /etc/exabgp/
 
-    service exabgp stop >/dev/null
-    systemctl enable exabgp >/dev/null
-    service exabgp start >/dev/null
+    service exabgp stop >/dev/null 2>/dev/null
+    systemctl enable exabgp >/dev/null 2>/dev/null
+    service exabgp start >/dev/null 2>/dev/null
 }
 
 function main()
