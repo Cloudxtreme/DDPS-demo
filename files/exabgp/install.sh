@@ -55,8 +55,6 @@ function install_exabgp()
 
     echo 'd /var/run/exabgp 0755 exabgp exabgp -' > /usr/lib/tmpfiles.d/exabgp.conf
     echo 'd /var/run/exabgp 0755 exabgp exabgp -' > /etc/tmpfiles.d/exabgp.conf
-
-    service exabgp stop
 }
 
 function apply_exabgp_config()
@@ -66,9 +64,9 @@ function apply_exabgp_config()
     cp $MYDIR/exabgp.env               /etc/exabgp/
     cp $MYDIR/runsocat.sh              /etc/exabgp/
 
-    systemctl enable exabgp
-    service exabgp start
-    systemctl is-active --quiet exabgp || echo exabgp is running
+    service exabgp stop >/dev/null
+    systemctl enable exabgp >/dev/null
+    service exabgp start >/dev/null
 }
 
 function main()
