@@ -2,6 +2,7 @@
 **/*~
 **/*.bak
 **/*.sw[abcdefghijklmnop]
+**/not-on-git
 
 # MacOS
 .DS_Store
