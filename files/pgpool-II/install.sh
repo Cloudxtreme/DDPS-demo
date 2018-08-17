@@ -29,9 +29,6 @@ case $DO_APT_INSTALL in
     fi
     apt-get -y install $PGPOOL
 
-    # Create new config file from template
-    $INSTALLATIONPATH/post_install.sh
-  
     ;;
     "FALSE")
     if [ -f /opt/pgpool2/bin/pgpool_setup ]; then
