@@ -21,7 +21,7 @@ Type: http://127.0.0.1:9090 into your browser.
 # Short introduction to Vagrant, and how this project is organized
 Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with just text files, and not worrying about the Hypervisor at all.
 
-The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM.
+The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file: provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine, to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM in /vagrant/files.
 
 The project contains the following important files and folders:
 
@@ -50,7 +50,7 @@ The project contains the following important files and folders:
     │       └── install.sh
     └── provision-vm.sh
 
-The files/ folders contains all the scripts and files for installing, and configuring all the applications running inside the VM.
+The files/ folder contains all the scripts and files for installing, and configuring all the applications running inside the VM. Each application have their own catalog.
 
 The provision-vm.sh is called from the Vagrantfile, and configures all the applications in a specific order.
 
@@ -60,7 +60,7 @@ All services running inside the VM must run on localhost (since the IP of the VM
 ## Using Vagrant
 After you have installed VirtualBox and Vagrant, you can provision a demo VM from this directory (using the Vagrantfile).
 
-** It's important that you standing the the directory containing the Vagrantfile! **
+** It's important that you standing the directory containing the Vagrantfile! **
 
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
@@ -68,7 +68,7 @@ Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
     $ vagrant up
 
-The first time you provision it will take a long time, since you need to fetch the Vagrant box image (running Ubuntu) and confiure all the software inside the VM afterwards.
+The first time you provision it will take a long time, since you need to fetch the Vagrant box image (running Ubuntu) and configure all the software inside the VM afterwards.
 
 ### When Vagrant is done provisioning the VM you can SSH into it with
 
@@ -78,7 +78,7 @@ The first time you provision it will take a long time, since you need to fetch t
 
     $ vagrant reload
 
-Don't reboot the VM from inside the VM! It wont load the Vagrantfile when booting, and mounting /vagrant and portforwarding wont work.
+Don't reboot the VM from inside the VM! It wont load the Vagrantfile when booting, and mounting /vagrant and portforwarding wont work!
 
 ### When you are done, you can halt/shutdown the VirtualBox VM with
 
@@ -91,7 +91,7 @@ You can also just halt/shutdown the image from inside the VM.
     $ cd [This git repo]
     $ vagrant up
 
-Do not start the machine from VirtualBox. Always start the VM using `vagrant up`.
+Do not start the machine from VirtualBox. Always start the VM using `vagrant up`, or the Vagrantfile wont load!
 
 ### If you want to start over with a fresh version of the VM (a new provisioning)
 
@@ -109,7 +109,7 @@ It will rerun all the install.sh files. Please make sure that all install.sh scr
 
 
 # Debugging for developers
-If you are responsible for mantaining the DDPS-demo VM, the following are nice to know.
+If you are responsible for maintaining the DDPS-demo VM, the following are nice to know.
 
 ### Colors during the Vagrant provisioning
 Watch the output when running `$ vagrant up`. Look for anything in the color red (it's an error of some kind). Normal color output is from the Vagrant box image (made by Ubuntu). Yellow color output is from our provisioning of the VM after it has booted.
