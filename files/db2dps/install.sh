@@ -50,9 +50,10 @@ function apply_config_to_opt_db2dps()
     # test -f /opt/db2dps/etc/db.ini     || /bin/cp $RESTORE_SRC_DIR/opt_db2dps_etc/db.ini /opt/db2dps/etc
     # test -f /opt/db2dps/etc/fnmcfg.ini || /bin/cp $RESTORE_SRC_DIR/opt_db2dps_etc/fnmcfg.ini /opt/db2dps/etc
 
-    envsubst < db.ini.SH     > /opt/db2dps/etc/db.ini
-    envsubst < fnmcfg.ini.SH > /opt/db2dps/etc/fnmcfg.ini
+    envsubst < $MYDIR/db.ini.SH     > /opt/db2dps/etc/db.ini
+    envsubst < $MYDIR/fnmcfg.ini.SH > /opt/db2dps/etc/fnmcfg.ini
 
+    test -d /opt/db2dps/etc/ssh || mkdir /opt/db2dps/etc/ssh
     test -f /opt/db2dps/etc/ssh/id_rsa || ssh-keygen -t rsa -b 4096 -f  /opt/db2dps/etc/ssh/id_rsa -N ""
     test -d /root/.ssh || mkdir /root/.ssh && chmod 700 /root/.ssh
 
@@ -230,7 +231,7 @@ function main()
     done
     shift `expr $OPTIND - 1`
 
-    . vars.SH
+    . $MYDIR/vars.SH
 
     add_group_and_user
     modify_sudoers 
