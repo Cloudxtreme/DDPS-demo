@@ -22,11 +22,11 @@ echo
 echo "########## Installing: OS Utilities ##########"
   /bin/bash ${VAGRANTDIR}/files/os-utilities/install.sh
 echo
-echo "########## Installing: PostgreSQL ##########"
-  /bin/bash ${VAGRANTDIR}/files/postgresql/install.sh
-echo
 echo "########## Installing: Pgpool-II ##########"
   /bin/bash ${VAGRANTDIR}/files/pgpool-II/install.sh
+echo
+echo "########## Installing: PostgreSQL ##########"
+  /bin/bash ${VAGRANTDIR}/files/postgresql/install.sh
 echo
 echo "########## Installing: NGINX ##########"
   /bin/bash ${VAGRANTDIR}/files/nginx/install.sh
@@ -46,6 +46,20 @@ echo
 echo "########## Installing: WEB-app ##########"
   /bin/bash ${VAGRANTDIR}/files/web-app/install.sh
 echo
+
+
+echo "###########################################################"
+echo "# Executing each configure.sh script for each application #"
+echo "###########################################################"
+
+# postgres and pgpool2 required ahead of database restore
+if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
+then
+    echo "########## Installing: PostgreSQL ##########"
+      /bin/bash ${VAGRANTDIR}/files/postgresql/configure.sh
+    echo
+fi
+
 echo "#################################################################"
 echo "# Installation complete: Run 'vagrant reload' to reboot VM now! #"
 echo "#################################################################"
