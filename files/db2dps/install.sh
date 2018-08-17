@@ -191,16 +191,16 @@ function install_db2dps_pkg()
 	echo "$0: installing package db2dps ... "
 
     ( 
-        if [ -e ${DEB} ]; then
+        if [ -e ${MYDIR}/${DEB} ]; then
             echo installing ${DEB} ...
         else
-            echo "${DEB} not found, see line 196 in $0"
+            echo "${MYDIR}/${DEB} not found, see line 196 in $0"
             exit 0
         fi
 
         echo "reading and installing dependencies"
-        apt-get install -y `dpkg -I ${DEB} |sed '/Depends:/!d; s/Depends://; s/,//g'` > /dev/null && echo "done successfully"
-        dpkg -i ${DEB} && echo "done successfully"
+        apt-get install -y `dpkg -I ${MYDIR}/${DEB} |sed '/Depends:/!d; s/Depends://; s/,//g'` > /dev/null && echo "done successfully"
+        dpkg -i ${MYDIR}/${DEB} && echo "done successfully"
     )
 }
 
