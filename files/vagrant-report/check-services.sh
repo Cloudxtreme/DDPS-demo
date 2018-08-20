@@ -22,6 +22,7 @@ echo
 echo "-----------------------"
 echo "Is the API-app running?"
 echo "I don't know..."
+echo
 
 ## Check for IPv4 TCP services running on localhost
 echo "-----------------------------------------------"
