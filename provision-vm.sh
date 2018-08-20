@@ -53,7 +53,7 @@ echo "##########################################################"
 echo "# Configuring some applications from configure.sh script #"
 echo "##########################################################"
 
-# Database restore requires both PostgreSQL and pgpool-II.
+# Pgpool-II should be installed after postgresql but before database restore
 if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
 then
     echo "########## Configuring: pgpool-II ##########"
