@@ -23,15 +23,15 @@ echo "-----------------------"
 echo "Is the API-app running?"
 echo "I don't know..."
 
-## Check for TCP services running on localhost
-echo "-----------------------------------"
+## Check for IPv4 TCP services running on localhost
+echo "-----------------------------------------------"
 echo "TCP services listeing on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1
 echo "It should be PostgreSQL(:5432), pgpool-II(:?), WEB-app(:?) and API-app(:?)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
-echo "-----------------------------------------"
+echo "---------------------------------------------------"
 echo "TCP services listening on all interfaces (0.0.0.0):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1
 echo "It should only be SSH(:22) and NGINX(:8080 & :9090)"

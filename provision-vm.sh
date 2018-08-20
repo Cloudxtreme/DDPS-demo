@@ -73,7 +73,7 @@ echo "#########################################################"
 echo "# Verifying services are started and listeing correctly #"
 echo "#########################################################"
 
-echo "########## Checking: TCP services ##########"
+echo "########## Checking: Running services ##########"
   /bin/bash ${VAGRANTDIR}/files/vagrant-report/check-services.sh
 echo
 
