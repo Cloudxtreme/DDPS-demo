@@ -2,10 +2,15 @@
 
 # This script checks various services and reports back to user during provision.
 
-## check postgres ok
 
-HBA_FILE=`sudo su postgres -c "psql -t -P format=unaligned -c 'show hba_file';"`
+## Check for running services
 echo "----------------------"
+echo "Is PostgreSQL running?"
+/usr/sbin/service postgresql status |grep Active:
+echo
+
+## Check PostgresSQL config
+HBA_FILE=`sudo su postgres -c "psql -t -P format=unaligned -c 'show hba_file';"`
 if [ -f $HBA_FILE ]; then
     echo "psql running and reporting $HBA_FILE as config file ok"
 else
@@ -13,23 +18,21 @@ else
 fi
 echo
 
-## Check for running services
-echo "----------------------"
-echo "Is PostgreSQL running?"
-/usr/sbin/service postgresql status |grep Active:
-echo
 echo "---------------------"
 echo "Is pgpool-II running?"
 /usr/sbin/service pgpool2 status |grep Active:
 echo
+
 echo "-----------------"
 echo "Is NGINX running?"
 /usr/sbin/service nginx status |grep Active:
 echo
+
 echo "-----------------------"
 echo "Is the WEB-app running?"
 echo "I don't know..."
 echo
+
 echo "-----------------------"
 echo "Is the API-app running?"
 echo "I don't know..."
