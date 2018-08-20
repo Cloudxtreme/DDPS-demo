@@ -35,5 +35,5 @@ echo
 echo "---------------------------------------------------"
 echo "TCP services listening on all interfaces (0.0.0.0):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1 |sort -n
-echo "It should only be SSH(:22), NGINX(:8080 & :9090) and pgpool-II (:9898)"
+echo "It should only be SSH(:22), NGINX(:8080 & :9090) and pgpool-II PCP (:9898)"
 echo
