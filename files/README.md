@@ -16,7 +16,7 @@ It contains the directories below:
     ├── vagrant-report
     └── web-app
 
-The provision script provision-vm.sh controls which applications are installed and configured first. The order matters! 
+The provision script provision-vm.sh (called from the Vagrantfile) controls which applications are installed and configured first. The order matters! 
 
 Each folder contains an install.sh bash-script for installing. Some applications require an additional configure.sh script to configure the application afterwards. Please check that the requirements for your application are meet, before installing/configuring the application. So the scripts can be run multiple times.
 
