@@ -153,7 +153,7 @@ If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js 
     $ vagrant ssh              # log into the VM
     $ netstat -an |grep tcp    # list all TCP services running inside the VM
 
-Make sure your service is running on: 127.0.0.1 or ::1 (IPv6) and that it is listing on the correct port!
+Make sure your service is running on: 127.0.0.1 **NOT** ::1 (IPv6) - and that it is listing on the correct port!
 
 NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `vagrant ssh` might not work.
 
