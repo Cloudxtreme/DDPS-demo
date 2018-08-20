@@ -2,6 +2,17 @@
 
 # This script checks various services and reports back to user during provision.
 
+## check postgres ok
+
+HBA_FILE=`sudo su postgres -c "psql -t -P format=unaligned -c 'show hba_file';"`
+echo "----------------------"
+if [ -f $HBA_FILE ]; then
+    echo "psql running and reporting $HBA_FILE as config file ok"
+else
+    echo "postgres installation failed"
+fi
+echo
+
 ## Check for running services
 echo "----------------------"
 echo "Is PostgreSQL running?"
