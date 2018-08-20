@@ -23,11 +23,11 @@ echo
 echo "########## Installing: OS Utilities ##########"
   /bin/bash ${VAGRANTDIR}/files/os-utilities/install.sh
 echo
-echo "########## Installing: Pgpool-II ##########"
-  /bin/bash ${VAGRANTDIR}/files/pgpool-II/install.sh
-echo
 echo "########## Installing: PostgreSQL ##########"
   /bin/bash ${VAGRANTDIR}/files/postgresql/install.sh
+echo
+echo "########## Installing: Pgpool-II ##########"
+  /bin/bash ${VAGRANTDIR}/files/pgpool-II/install.sh
 echo
 echo "########## Installing: NGINX ##########"
   /bin/bash ${VAGRANTDIR}/files/nginx/install.sh
@@ -52,6 +52,14 @@ echo
 echo "##########################################################"
 echo "# Configuring some applications from configure.sh script #"
 echo "##########################################################"
+
+# Database restore requires both PostgreSQL and pgpool-II.
+if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
+then
+    echo "########## Configuring: pgpool-II ##########"
+      /bin/bash ${VAGRANTDIR}/files/pgpool-II/configure.sh
+    echo
+fi
 
 # Database restore requires both PostgreSQL and pgpool-II.
 if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
