@@ -24,11 +24,11 @@
 
 # - pgpool Connection Settings -
 
-listen_addresses = 'PGPOOL_LISTEN_ADDRESSES'
+listen_addresses = '$PGPOOL_LISTEN_ADDRESSES'
                                    # Host name or IP address to listen on:
                                    # '*' for all, '' for no TCP/IP connections
                                    # (change requires restart)
-port = PGPOOL_PORT
+port = $PGPOOL_PORT
                                    # Port number
                                    # (change requires restart)
 socket_dir = '/var/run/postgresql'
@@ -50,7 +50,7 @@ pcp_listen_addresses = '*'
                                    # Host name or IP address for pcp process to listen on:
                                    # '*' for all, '' for no TCP/IP connections
                                    # (change requires restart)
-pcp_port = PCP_PORT
+pcp_port = $PCP_PORT
                                    # Port number for pcp
                                    # (change requires restart)
 pcp_socket_dir = '/var/run/postgresql'
@@ -61,13 +61,13 @@ pcp_socket_dir = '/var/run/postgresql'
 
 # - Backend Connection Settings -
 
-backend_hostname0 = 'BACKEND_HOSTNAME0'
+backend_hostname0 = '$BACKEND_HOSTNAME0'
                                    # Host name or IP address to connect to for backend 0
-backend_port0 = BACKEND_PORT0
+backend_port0 = $BACKEND_PORT0
                                    # Port number for backend 0
 backend_weight0 = 1
                                    # Weight for backend 0 (only in load balancing mode)
-backend_data_directory0 = BACKEND_DATA_DIRECTORY0
+backend_data_directory0 = '$BACKEND_DATA_DIRECTORY0'
                                    # Data directory for backend 0
 backend_flag0 = 'ALLOW_TO_FAILOVER'
                                    # Controls various backend behavior
