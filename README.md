@@ -1,6 +1,8 @@
 # DDPS demo of the WEB and API-app
 This repository builds a VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
 
+The project is primarily for developers of DDPS, but others are welcome to check it out.
+
 ### Requiremnts
 You need the following elements installed:
 
@@ -21,38 +23,44 @@ Type: http://127.0.0.1:9090 into your browser.
 # Short introduction to Vagrant, and how this project is organized
 Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with just text files, and not worrying about the Hypervisor at all.
 
-The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file: provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine, to the dynamic IP of the VM. The Vagrantfile also mounts the directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM in /vagrant/files.
+The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file: provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine, to the dynamic IP of the VM. The Vagrantfile also mounts this directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM in /vagrant/files.
 
 The project contains the following important files and folders:
 
     $ tree
-    ├── README.md
     ├── Vagrantfile
     ├── files
     │   ├── README.md
     │   ├── api-app
     │   │   └── install.sh
     │   ├── db2dps
-    │   │   └── install.sh
+    │   │   ├── install.sh
     │   ├── exabgp
-    │   │   └── install.sh
+    │   │   ├── install.sh
     │   ├── nginx
     │   │   └── install.sh
     │   ├── node
     │   │   └── install.sh
     │   ├── os-patches
     │   │   └── install.sh
+    │   ├── os-utilities
+    │   │   └── install.sh
     │   ├── pgpool-II
-    │   │   └── install.sh
+    │   │   ├── configure.sh
+    │   │   ├── install.sh
+    │   │   └── post_install.sh
     │   ├── postgresql
-    │   │   └── install.sh
+    │   │   ├── configure.sh
+    │   │   ├── install.sh
+    │   ├── vagrant-report
+    │   │   └── check-services.sh
     │   └── web-app
     │       └── install.sh
     └── provision-vm.sh
 
-The files/ folder contains all the scripts and files for installing and configuring all the applications running inside the VM. Each application have their own catalog.
+The files/ folder contains all the scripts and files for installing and configuring all the applications running inside the VM. Each application have their own catalog. There are more files in the folders than listed above.
 
-The provision-vm.sh is called from the Vagrantfile, and configures all the applications in a specific order.
+The provision-vm.sh is called from the Vagrantfile, and installs and configures all the applications in a specific order.
 
 All services running inside the VM must run on localhost (since the IP of the VM is dynamic), and we use the Vagrantfile to forward them to the VM (TCP port 8080 and 9090).
 
@@ -115,9 +123,8 @@ If you are responsible for maintaining the DDPS-demo VM, the following are nice 
 Watch the output when running `$ vagrant up`. Look for the colors in your terminal.
 
   * NORMAL: Output from the Vagrant box image (made by Ubuntu).
-  * YELLOW: Output from provisioning the VM (all the install.sh scritps).
+  * GREEN:  Output from provisioning the VM (all the install and configure scritps).
   * RED:    Error of some kind (please fix)!
-
 
 ### Errors during boot
 Check the ubuntu-console.log for errors during boot. It will be located in this directory.
@@ -179,20 +186,18 @@ On Windows.
     $ vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"
 
 ### Working with Vagrant Box images
-    * List all Vagrant Box images.
+Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `vagrant` to list, remove and update them:
 
+    * List all Vagrant Box images.
       $ vagrant box list
 
     * Update all Vagrant Box images.
-
       $ vagrant box update
 
     * Remove old Vagrant Box images. 
-
       $ vagrant box prune
 
     * See all options for working with Vagrant Box images.
-
       $ vagrant box
 
 ### Update Vagrant plugins
