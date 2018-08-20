@@ -33,7 +33,7 @@ FROM flow.fastnetmoninstances where vpn_ip_addr = '192.168.67.3';"
 LINES=`echo "${Q}" | psql -t -F' ' -h 127.0.0.1 -A -U flowuser -v ON_ERROR_STOP=1 -w -d netflow | wc -l`
 
 if [ $LINES -gt 100 ]; then
-    echo "Read $LINES (expected 119) from database ok using pgpool2"
+  echo "Read $LINES from database using pgpool2 (expected 119): OK"
 else
     echo "Failed reading from database using pgpool2"
 fi
