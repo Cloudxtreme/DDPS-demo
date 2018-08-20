@@ -8,10 +8,10 @@ export DEBIAN_FRONTEND=noninteractive
 # Root directory in the git repo is mounted inside the VM in
 VAGRANTDIR=/vagrant
 
-# Installing all the applications for running DDPS-demo
-# The order is important, and executed from the top down.
+# Installing all the applications for running DDPS-demo.
+# The order is important, and executed from the top down!
 # Some applications have dependencies, that require a later config step.
-# Lastly we check that various ports and services are configured correctly.
+# Lastly we check that the services are configured correctly.
 
 echo "#########################################################"
 echo "# Executing each install.sh script for each application #"
@@ -69,9 +69,9 @@ then
     echo
 fi
 
-echo "##########################################################"
-echo "# Verifying services are started and listeing correctly! #"
-echo "##########################################################"
+echo "#########################################################"
+echo "# Verifying services are started and listeing correctly #"
+echo "#########################################################"
 
 echo "########## Checking: TCP services ##########"
   /bin/bash ${VAGRANTDIR}/files/vagrant-report/check-services.sh
