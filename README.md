@@ -104,7 +104,7 @@ Do not start the machine from VirtualBox. Always start the VM using `vagrant up`
 ### If you want to start over with a fresh version of the VM (a new provisioning)
 
     $ cd [This git repo]
-    $ vagrant destroy
+    $ vagrant destroy     # use `vagrant destroy -f` if you don't want confirmation
     $ vagrant up
 
 And a fresh new install is ready for you. All your changes to the old VM is gone!
@@ -113,7 +113,7 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 
     $ vagrant provision
 
-It will rerun all the install.sh files. Please make sure that all install.sh scripts are idempotent.
+It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent.
 
 
 # Debugging for developers
