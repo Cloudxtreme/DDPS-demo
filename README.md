@@ -68,7 +68,7 @@ All services running inside the VM must run on localhost (since the IP of the VM
 ## Using Vagrant
 After you have installed VirtualBox and Vagrant, you can provision a demo VM from this directory (using the Vagrantfile).
 
-** It's important that your standing in the directory containing the Vagrantfile! **
+**It's important that your standing in the directory containing the Vagrantfile!**
 
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
