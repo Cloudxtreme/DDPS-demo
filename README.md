@@ -188,16 +188,16 @@ On Windows.
 ### Working with Vagrant Box images
 Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `vagrant` to list, remove and update them:
 
-    * List all Vagrant Box images.
+    - List all Vagrant Box images:
       $ vagrant box list
 
-    * Update all Vagrant Box images.
+    - Update all Vagrant Box images:
       $ vagrant box update
 
-    * Remove old Vagrant Box images. 
+    - Remove old Vagrant Box images:
       $ vagrant box prune
 
-    * See all options for working with Vagrant Box images.
+    - See all options for working with Vagrant Box images:
       $ vagrant box
 
 ### Update Vagrant plugins
