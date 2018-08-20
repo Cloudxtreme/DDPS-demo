@@ -9,7 +9,7 @@ echo "Is PostgreSQL running?"
 /usr/sbin/service postgresql status |grep Active:
 echo
 
-## Check PostgresSQL config
+echo "Is PostgreSQL configuration OK?"
 HBA_FILE=`sudo su postgres -c "psql -t -P format=unaligned -c 'show hba_file';"`
 if [ -f $HBA_FILE ]; then
     echo "psql running and reporting $HBA_FILE as config file ok"
@@ -37,6 +37,7 @@ echo "-----------------------"
 echo "Is the API-app running?"
 echo "I don't know..."
 echo
+
 
 ## Check for IPv4 TCP services running on localhost
 echo "-----------------------------------------------"
