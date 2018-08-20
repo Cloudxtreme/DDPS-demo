@@ -46,6 +46,7 @@ function savefile()
 function install_postgresql()
 {
 	# see https://www.postgresql.org/about/news/1432/
+    echo "adding postgresql.org to sources.list ... "
 	echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 	cat << EOF > /etc/apt/preferences.d/pgdg.pref
@@ -54,6 +55,7 @@ Pin: release o=apt.postgresql.org
 Pin-Priority: 500
 EOF
 
+    echo "adding postgresql to list of keys used by apt"
 	wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | apt-key add -
 	apt-get -y update >$TMPFILE
     case $? in
@@ -81,6 +83,7 @@ EOF
 	# 9.4, 9.5, 9.6 ... pick the latest
 	PG_HBACONF=`ls -1 /etc/postgresql/*/main/pg_hba.conf|sort -n | tail -1`
 
+    echo "changing ${PG_HBACONF} - adding dbadmin and flowuser ... "
 	savefile "${PG_HBACONF}"
 	awk '
 	{
@@ -97,6 +100,7 @@ EOF
 	chmod 0640 ${PG_HBACONF}
 	chown postgres:postgres ${PG_HBACONF}
 	service postgresql restart
+    echo "postgresql service restarted"
 }
 
 function main()
