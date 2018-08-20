@@ -11,12 +11,12 @@ VAGRANTDIR=/vagrant
 # Installing all the applications for running DDPS-demo
 # The order is important, and executed from the top down.
 # Some applications have dependencies, that require a later config step.
+# Lastly we check that various ports and services are configured correctly.
 
-echo
 echo "#########################################################"
 echo "# Executing each install.sh script for each application #"
 echo "#########################################################"
-echo
+
 echo "########## Installing: OS Patches ##########"
   /bin/bash ${VAGRANTDIR}/files/os-patches/install.sh
 echo
@@ -49,9 +49,9 @@ echo "########## Installing: WEB-app ##########"
 echo
 
 
-echo "##########################################################"
-echo "# Configuring some applications from configure.sh script #"
-echo "##########################################################"
+echo "###########################################################"
+echo "# Configuring some applications from configure.sh scripts #"
+echo "###########################################################"
 
 # Pgpool-II should be installed after postgresql but before database restore
 if [ -f ${VAGRANTDIR}/files/postgresql/configure.sh ];
@@ -68,6 +68,15 @@ then
       /bin/bash ${VAGRANTDIR}/files/postgresql/configure.sh
     echo
 fi
+
+echo "##########################################################"
+echo "# Verifying services are started and listeing correctly! #"
+echo "##########################################################"
+
+echo "########## Checking: TCP services ##########"
+  /bin/bash ${VAGRANTDIR}/files/vagrant-report/check-services.sh
+echo
+
 
 echo "#################################################################"
 echo "# Installation complete: Run 'vagrant reload' to reboot VM now! #"
