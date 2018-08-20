@@ -49,6 +49,8 @@ cp -v ${TEMPDIR}/${CONFFILE} ${AVAILABLE}/${CONFFILE}
 # Create symlink
 ln -sf ${AVAILABLE}/${CONFFILE} ${ENABLED}/${CONFFILE}
 
+# Remove default server
+rm -fv ${ENABLED}/default
 
 # Reload configuration
 systemctl restart nginx
