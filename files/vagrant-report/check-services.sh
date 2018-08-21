@@ -63,7 +63,7 @@ echo
 echo "-----------------------------------------------"
 echo "TCP services listeing on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
-echo "It should be PostgreSQL(:5432), pgpool-II(:9999), WEB-app(:?) and API-app(:?)"
+echo "It should be PostgreSQL(:5432), pgpool-II(:9999), WEB-app(:8686) and API-app(:9696)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
