@@ -2,7 +2,7 @@
 #
 # Install the latest version of pgpool2
 #
-# set -x
+set -x
 
 echo "Installing pgpool ..."
 
@@ -13,15 +13,14 @@ PGPOOL='pgpool2'
 INSTALLATIONPATH=$(pwd)
 CONFIGTMPL='$INSTALLATIONPATH/pgpool.conf.tmpl'
 
-#$INSTALLATIONPATH/pre_install.sh
-
 export DEBIAN_FRONTEND=noninteractive
 
 DO_APT_INSTALL="TRUE"        # kasm
 
 case $DO_APT_INSTALL in
     "TRUE")
-    PGCHK=$(printf $(dpkg --get-selections|grep $PGPOOL|grep install))
+    
+    PGCHK=$(dpkg --get-selections|grep $PGPOOL|grep install)
     CHK=$?
     if [[ $CHK -eq 0 ]]; then
       apt-get -y purge $PGPOOL
