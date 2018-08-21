@@ -1,5 +1,5 @@
 # DDPS demo of the WEB and API-app
-This repository builds a VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System's WEB-GUI and WEB-API.
+This repository builds a VM running on VirtualBox using Vagrant. The VM is a demo of the DeiC DDoS Prevention System.
 
 The project is primarily for developers of DDPS, but others are welcome to check it out.
 
@@ -11,19 +11,18 @@ You need the following elements installed:
 
 They both work on Windows, MacOS and Linux -- are both free, and easy to install.
 
-To see a demonstration of the WEB-app and the API-app follow the instructions below.
+#### Demo time
+To see a demonstration, just type the following into a modern browser:
 
-### WEB-app demo
-Type: http://127.0.0.1:8080 into your browser.
+http://ddps.deic.dk
 
-### API-app demo
-Type: http://127.0.0.1:9090 into your browser.
+**We need a default username and password!?**
 
 
 # Short introduction to Vagrant, and how this project is organized
 Vagrant is an easy way to manage VM's running on various Hypervisors (VirtualBox) with just text files, and not worrying about the Hypervisor at all.
 
-The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file: provision-vm.sh. The Vagrantfile also forwards TCP port 8080 and 9090 to the VM from localhost on your machine, to the dynamic IP of the VM. The Vagrantfile also mounts this directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM in /vagrant/files.
+The configuration of the VM is done from the Vagrantfile in this directory. The Vagrantfile installs an Ubuntu and provisions it from the file: provision-vm.sh. The Vagrantfile configures a private network interface, with IP: 130.225.242.205 which ddps.deic.dk (and www.ddps.deic.dk) already resolves too. The Vagrantfile also mounts this directory inside the VM in /vagrant, so all the files in the files/ folder are available inside the VM in /vagrant/files.
 
 The project contains the following important files and folders:
 
@@ -62,13 +61,13 @@ The files/ folder contains all the scripts and files for installing and configur
 
 The provision-vm.sh is called from the Vagrantfile, and installs and configures all the applications in a specific order.
 
-All services running inside the VM must run on localhost (since the IP of the VM is dynamic), and we use the Vagrantfile to forward them to the VM (TCP port 8080 and 9090).
+All services running inside the VM must run on localhost (127.0.0.1). Only NGINX is allowed to listen on 0.0.0.0, since it functions as a reverse proxy for the web applications.
 
 
 ## Using Vagrant
-After you have installed VirtualBox and Vagrant, you can provision a demo VM from this directory (using the Vagrantfile).
+After you have installed VirtualBox and Vagrant, you can provision a demo DDPS VM from this directory (using the Vagrantfile).
 
-**It's important that your standing in the directory containing the Vagrantfile!**
+**It's important that you are standing in the directory containing the Vagrantfile!**
 
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
 
@@ -148,23 +147,23 @@ Make sure to look in /var/log for logfiles in the VM.
 Check the newest files, specific application folders or syslog if in doubt.
 
 ### Services running inside the VM
-If you have a service running inside the VM (postgreSQL, pgpool, NGINX, Node.js apps they MUST run on localhost (127.0.0.1)!
+If you have a service running inside the VM (postgreSQL, pgpool, Node.js apps they MUST run on localhost (127.0.0.1)!
 
     $ vagrant ssh              # log into the VM
     $ netstat -an |grep tcp    # list all TCP services running inside the VM
 
 Make sure your service is running on: 127.0.0.1 **NOT** ::1 (IPv6) - and that it is listing on the correct port!
 
-NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `vagrant ssh` might not work.
+NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `vagrant ssh` might not work. Pgpool-II can be ignored, since we only run one VM for the demo.
 
 ### Debug network issues
 How can I see that the VM receives my network traffic? 
 
-When typing http://127.0.0.1:8080 into a browser, and you want to verify that the VM receives the traffic?
+When typing http://ddps.deic.dk into a browser, and you want to verify that the VM receives the traffic:
 
-    $ vagrant ssh                             # log in to the VM
-    $ sudo tcpdump -ni enp0s3 tcp port 8080   # tcpdump for traffic on TCP port 8080, change port number if you need another port
-    type http://127.0.0.1:8080 into your browser or press reload
+    $ vagrant ssh                          # log in to the VM
+    $ sudo tcpdump -ni enp0s3 tcp port 80  # tcpdump for traffic on TCP port 80, change port number if you need another port
+    type http://ddps.deic.dk into your browser or press reload
 
 You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see if the ports you need are forwarded.
 
@@ -172,6 +171,14 @@ You can also check that the VM correct forwards ports on localhost with.
 
     $ vagrant ssh          # log in to the VM
     $ sudo tcpdump -ni lo  # tcpdump all traffic on localhost
+
+The NGINX accepts traffic to the domain ddps.deic.dk and www.ddps.deic.dk, and the configuration forwards incomming traffic like so:
+
+    - http://ddps.deic.dk      -> 127.0.0.1:8686
+    - http://ddps.deic.dk:8080 -> 127.0.0.1:8686
+    - http://ddps.deic.dk:9090 -> 127.0.0.1:9696
+
+Traffic to https:// is redirected to http:// since we normally handle SSL offloading on our load balancers.
 
 ## Vagrant specific issues
 
@@ -186,7 +193,7 @@ On Windows.
     $ vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"
 
 ### Working with Vagrant Box images
-Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `vagrant` to list, remove and update them:
+Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `vagrant` to list, update and remove them:
 
     - List all Vagrant Box images:
       $ vagrant box list
