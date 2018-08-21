@@ -12,7 +12,7 @@ export DEBIAN_FRONTEND=noninteractive
 PKG='nginx'
 VAGRANTPATH='/vagrant/files'
 
-PKGCHK=$(printf $(dpkg --get-selections|grep $PKG|grep install))
+PKGCHK=$(dpkg --get-selections|grep $PKG|grep install)
 CHK=$?
 
 if [[ $CHK -eq 0 ]]; then
