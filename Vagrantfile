@@ -10,11 +10,8 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "ddps-demo"
 
-    # Configure http://localhost:8080 to reach the GUI-app on the VM
-    config.vm.network :forwarded_port, guest: 8080, host: 8080, id: 'gui'
-
-    # Configure http://localhost:9090 to reach the API-app on the VM
-    config.vm.network :forwarded_port, guest: 9090, host: 9090, id: 'api'
+    # Configure private network: 130.225.242.205
+    config.vm.network "private_network", ip: "130.225.242.205"
 
     # Mount the current folder in /vagrant inside the VM
     config.vm.synced_folder ".", "/vagrant"
