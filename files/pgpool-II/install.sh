@@ -2,7 +2,7 @@
 #
 # Install the latest version of pgpool2
 #
-set -x
+#set -x
 
 echo "Installing pgpool ..."
 
