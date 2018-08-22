@@ -62,7 +62,9 @@ The files/ folder contains all the scripts and files for installing and configur
 
 The provision-vm.sh is called from the Vagrantfile, and installs and configures all the applications in a specific order.
 
-All services running inside the VM must run on localhost (127.0.0.1). Only NGINX is allowed to listen on 0.0.0.0, since it functions as a reverse proxy for the web applications.
+**All services/applications running inside the VM must run on localhost (127.0.0.1)!**
+
+Only NGINX is allowed to listen on 0.0.0.0, since it functions as a reverse proxy for the web applications (GUI and API). You cannot have services running on a specific IP address inside the VM!
 
 
 ## Using Vagrant
