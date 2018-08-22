@@ -12,11 +12,11 @@ You need the following elements installed:
 They both work on Windows, MacOS and Linux -- are both free, and easy to install.
 
 #### Demo time
-To see a demonstration, just type the following into a modern browser:
+To see a demonstration, just type the following into a modern browse:
 
 http://ddps.deic.dk
 
-**We need a default username and password!?**
+**We need a default username and password listed here?**
 
 
 # Short introduction to Vagrant, and how this project is organized
@@ -37,6 +37,7 @@ The project contains the following important files and folders:
     │   ├── exabgp
     │   │   ├── install.sh
     │   ├── nginx
+    │   │   ├── configure.sh
     │   │   └── install.sh
     │   ├── node
     │   │   └── install.sh
@@ -85,7 +86,7 @@ The first time you provision it will take a long time, since you need to fetch t
 
     $ vagrant reload
 
-Don't reboot the VM from inside the VM! It wont load the Vagrantfile when booting, and mounting /vagrant and portforwarding wont work!
+Don't reboot the VM from inside the VM or from VirtualBox! It wont load the Vagrantfile when booting, and mounting /vagrant and port forwarding wont work!
 
 ### When you are done, you can halt/shutdown the VirtualBox VM with
 
@@ -108,29 +109,27 @@ Do not start the machine from VirtualBox. Always start the VM using `vagrant up`
 
 And a fresh new install is ready for you. All your changes to the old VM is gone!
 
-Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's when running `vagrant halt` or `vagrant destory`. You have to remove them yourself! On MacOS use:
-
-    $ sudo route delete 130.225.242.200/29 && sudo route delete 172.22.86.8/30 
+Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's when running `vagrant halt` or `vagrant destory`. You have to remove them yourself! Delete them with route delete or reboot your system, if you want to make sure they are gone.
 
 ### If you need to quickly reprovisioin for testing
 
     $ vagrant provision
 
-It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent.
+It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent. The safeste is to run: $ `vagrant destroy -f` && `vagrant up`.
 
 
 # Debugging for developers
 If you are responsible for maintaining the DDPS-demo VM, the following are nice to know.
 
 ### Colors during the Vagrant provisioning
-Watch the output when running `$ vagrant up`. Look for the colors in your terminal.
+Watch the output when running `$ vagrant up`. Look for the colors in your terminal. If you use default colors:
 
   * NORMAL: Output from the Vagrant box image (made by Ubuntu).
   * GREEN:  Output from provisioning the VM (all the install and configure scritps).
-  * RED:    Error of some kind (please fix)!
+  * RED:    Errors of some kind (please fix them)!
 
 ### Errors during boot
-Check the ubuntu-console.log for errors during boot. It will be located in this directory.
+Check the ubuntu-console.log for errors during boot. It will be located in this directory. Verify this file after running $ `vagrant reload` when you think you are all done. To make sure all services are started correctly after a reboot.
 
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
@@ -140,8 +139,10 @@ When using Vagrant you login as the user vagrant. If you need root access the va
 
 And you will have a root shell (bash).
 
+The 'vagrant' user's password is: vagrant 
+
 ### Check /var/log inside the VM
-Make sure to look in /var/log for logfiles in the VM.
+Make sure to look in /var/log/ for logfiles in the VM.
 
     $ vagrant ssh
     $ sudo bash
@@ -151,7 +152,7 @@ Make sure to look in /var/log for logfiles in the VM.
 Check the newest files, specific application folders or syslog if in doubt.
 
 ### Services running inside the VM
-If you have a service running inside the VM (postgreSQL, pgpool, Node.js apps they MUST run on localhost (127.0.0.1)!
+If you have a service running inside the VM (PostgreSQL, pgpool-II or Node.js apps they MUST run on localhost (127.0.0.1)!
 
     $ vagrant ssh              # log into the VM
     $ netstat -an |grep tcp    # list all TCP services running inside the VM
@@ -176,13 +177,13 @@ You can also check that the VM correct forwards ports on localhost with.
     $ vagrant ssh          # log in to the VM
     $ sudo tcpdump -ni lo  # tcpdump all traffic on localhost
 
-The NGINX accepts traffic to the domain ddps.deic.dk and www.ddps.deic.dk, and the configuration forwards incomming traffic like so:
+The NGINX accepts traffic to the domain ddps.deic.dk and www.ddps.deic.dk, and the configuration forwards incomming traffic in the VM like so:
 
     - http://ddps.deic.dk      -> 127.0.0.1:8686
     - http://ddps.deic.dk:8080 -> 127.0.0.1:8686
     - http://ddps.deic.dk:9090 -> 127.0.0.1:9696
 
-Traffic to https:// is redirected to http:// since we normally handle SSL offloading on our load balancers.
+Don't use HTTPS (https://ddps.deic.dk) since we handle SSL(TLS) offloading on our load balancers in production.
 
 ## Vagrant specific issues
 
