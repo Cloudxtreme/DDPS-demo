@@ -110,7 +110,7 @@ And a fresh new install is ready for you. All your changes to the old VM is gone
 
 Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's when running `vagrant halt` or `vagrant destory`. You have to remove them yourself! On MacOS use:
 
-    $ sudo route delete 130.225.242.204/30 && sudo route delete 172.22.86.8/30 
+    $ sudo route delete 130.225.242.200/29 && sudo route delete 172.22.86.8/30 
 
 ### If you need to quickly reprovisioin for testing
 
