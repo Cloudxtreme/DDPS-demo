@@ -11,11 +11,11 @@ Vagrant.configure("2") do |config|
     config.vm.hostname = "ddps-demo"
 
     # Configure private network in VM for the public IP for ddps.deic.dk
-    # `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
-    config.vm.network "private_network", ip: "130.225.242.205", netmask: "255.255.255.252"
+    # FYI: `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
+    config.vm.network "private_network", ip: "130.225.242.205", netmask: "255.255.255.248"
 
     # Should only be used if you are a DeiC employee, and working from the office
-    # `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
+    # FYI: `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
     config.vm.network "private_network", ip: "172.22.86.10", netmask: "255.255.255.252"
 
     # Mount the current folder in /vagrant inside the VM
