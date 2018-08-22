@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
     # Should only be used if you are a DeiC employee, and working from the office
     # FYI: `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
-    config.vm.network "private_network", ip: "172.22.86.10", netmask: "255.255.255.252"
+#    config.vm.network "private_network", ip: "172.22.86.10", netmask: "255.255.255.252"
 
     # Mount the current folder in /vagrant inside the VM
     config.vm.synced_folder ".", "/vagrant"
