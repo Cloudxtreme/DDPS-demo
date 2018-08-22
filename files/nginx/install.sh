@@ -1,11 +1,9 @@
 #!/bin/bash
 #set -x
-echo "Installing NGINX ..."
-echo "Make sure that NGINX listen on 0.0.0.0 port 8080 and 9090!"
-echo "NGINX must redirect traffic on port 8080 and 9090 to the Node-apps on localhost."
-echo "E.g. if the Node.js API-app listen on 127.0.0.1:9696"
-echo "NGINX must redirect traffic incomming on 0.0.0.0:9090 to 127.0.0.1:9696"
-echo "Same thing for the Node.js WEB-app!"
+echo "@ASH: NGINX currently listens on TCP port :8686 and :9696 for testing"
+echo "@ASH: THIS MUST BE DISABLED FOR THE WEB-APP AND API-APP TO WORK!"
+echo "@ASH: Please remove it from: files/nginx/demo.ddps.deic.dk.tmpl"
+echo "@ASH: It's the: 'server { listen $LOCALHOST:$LOCALPORT1(2) }'.. part"
 
 export DEBIAN_FRONTEND=noninteractive
 

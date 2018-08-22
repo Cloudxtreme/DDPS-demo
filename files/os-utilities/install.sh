@@ -20,6 +20,7 @@ function generate_locales()
     locale-gen en_DK.utf8       # prevent perl from complaining during tests (Niels Thomas)
     locale-gen en_GB.UTF-8      # danish locale required by postgres (sorting)
     locale-gen da_DK.UTF-8      # danish locale required by postgres (sorting)
+    locale-gen en_US.UTF-8      # US english locale required by postgres (sorting)
 }
 
 

@@ -78,9 +78,9 @@ echo "########## Checking: Running services ##########"
 echo
 
 
-echo "#################################################################"
-echo "# Installation complete: Run 'vagrant reload' to reboot VM now! #"
-echo "#################################################################"
+echo "##########################################################"
+echo "# Installation complete: Please check the output above!  #"
+echo "##########################################################"
 echo
 
 exit 0

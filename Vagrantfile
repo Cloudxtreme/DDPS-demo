@@ -10,11 +10,13 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/xenial64"
     config.vm.hostname = "ddps-demo"
 
-    # Configure private network for public ip for ddps.deic.dk
-    config.vm.network "private_network", ip: "130.225.242.205"
+    # Configure private network for the public IP for: ddps.deic.dk (only a /29 works)
+    # FYI: `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
+    config.vm.network "private_network", ip: "130.225.242.205", netmask: "255.255.255.248"
 
-    # Configure private network for private ip for ddps.deic.dk
-    config.vm.network "private_network", ip: "172.22.86.10"
+    # Should only be used if you are a DeiC employee, and working from the office
+    # FYI: `vagrant halt` and `vagrant destroy` does NOT remove local OS routes!
+    config.vm.network "private_network", ip: "172.22.86.10", netmask: "255.255.255.252"
 
     # Mount the current folder in /vagrant inside the VM
     config.vm.synced_folder ".", "/vagrant"

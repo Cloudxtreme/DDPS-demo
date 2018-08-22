@@ -1,4 +1,3 @@
-
 server {
         listen $LOCALHOST:$LOCALPORT1;
         #listen [::]:80 default_server;
@@ -51,8 +50,6 @@ server {
         #}
 }
 
-
-
 server {
         listen $LOCALHOST:$LOCALPORT2;
         #listen [::]:80 default_server;
@@ -79,22 +76,20 @@ server {
 }
 
 server {
-    listen $NGXPORT8080;
-    server_name $NGXSERVERNAME;
+    listen $NGXPORT80;
+    server_name $NGXSERVERNAME $NGXSERVERALIAS;
     root        $NGXROOT;
     index       $NGXINDEX;
     
     # log files 
     access_log  /var/log/nginx/nginx.access.log;
-    error_log   /var/log/nginx/nginx.error.log;
-    
+    error_log   /var/log/nginx/nginx.error.log; 
     
     ## default location ##
     # location / {
     #     include /etc/nginx/mime.types;
     #     try_files $TRY_FILES;
     # }
-
     
     location /sso {
         proxy_pass             https://wayfsp2.wayf.dk/saml2jwt;
@@ -104,17 +99,37 @@ server {
 
     location / {
         proxy_pass http://localhost:8686/;
-        #proxy_pass https://dr.dk/;
         set $SET;
         proxy_set_header auth $AUTH;
     }
-
 }
 
+server {
+    listen $NGXPORT8080;
+    server_name $NGXSERVERNAME $NGXSERVERALIAS;
+    root        $NGXROOT;
+    index       $NGXINDEX;
+    
+    # log files 
+    access_log  /var/log/nginx/nginx.access.log;
+    error_log   /var/log/nginx/nginx.error.log;
+    
+    location /sso {
+        proxy_pass             https://wayfsp2.wayf.dk/saml2jwt;
+        proxy_set_header       X-Acs $X_ACS;
+        proxy_set_header       X-token "wJInZb9G0vUmFhB3I9EqL6Iir8v6LDVToSIsKa/Inmvp";
+    }
+
+    location / {
+        proxy_pass http://localhost:8686/;
+        set $SET;
+        proxy_set_header auth $AUTH;
+    }
+}
 
 server {
     listen $NGXPORT9090;
-    server_name $NGXSERVERNAME;
+    server_name $NGXSERVERNAME $NGXSERVERALIAS;
     root        $NGXROOT;
     index       $NGXINDEX;
     
@@ -133,6 +148,5 @@ server {
         set $SET;
         proxy_set_header auth $AUTH;
     }
-
 }
 
