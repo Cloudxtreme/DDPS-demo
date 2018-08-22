@@ -1,12 +1,4 @@
 server {
-    listen 443 default_server;
-    listen [::]:443 default_server;
-    #server_name _;
-    server_name $NGXSERVERNAME $NGXSERVERALIAS;
-    return 301 http://$HOST$REQUEST_URI;
-}
-
-server {
         listen $LOCALHOST:$LOCALPORT1;
         #listen [::]:80 default_server;
 

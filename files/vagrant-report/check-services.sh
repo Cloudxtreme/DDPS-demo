@@ -60,8 +60,8 @@ echo
 
 # Check that network services are running correctly
 ## Check for IPv4 TCP services running on localhost
-echo "-----------------------------------------------"
-echo "TCP services listeing on localhost (127.0.0.1):"
+echo "----------------------------------------------------"
+echo "TCP services listeing only on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
 echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9898, :9999)"
 echo
@@ -70,5 +70,5 @@ echo
 echo "---------------------------------------------------"
 echo "TCP services listening on all interfaces (0.0.0.0):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1 |sort -n
-echo "It should only be SSH(:22) and NGINX(:80, :443, :8080 & :9090)"
+echo "It should only be SSH(:22) and NGINX(80, :8080 & :9090)"
 echo
