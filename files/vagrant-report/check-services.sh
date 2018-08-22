@@ -63,12 +63,12 @@ echo
 echo "-----------------------------------------------"
 echo "TCP services listeing on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
-echo "It should be PostgreSQL(:5432), pgpool-II(:9999), WEB-app(:8686) and API-app(:9696)"
+echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9998, :9999)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
 echo "---------------------------------------------------"
 echo "TCP services listening on all interfaces (0.0.0.0):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1 |sort -n
-echo "It should only be SSH(:22), NGINX(:80, :443, :8080 & :9090)"
+echo "It should only be SSH(:22) and NGINX(:80, :443, :8080 & :9090)"
 echo
