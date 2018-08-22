@@ -1,8 +1,8 @@
 #!/bin/bash
 #set -x
-echo "NGINX CURRENTLY LISTENS ON TCP PORT :8686 AND :9696"
-echo "THIS MUST BE DISABLED FOR THE WEB-APP AND API-APP TO WORK"
-echo "PLEASE REMOVE IT FROM: /etc/nginx/sites-enabled/demo.ddps.deic.dk"
+echo "@ASH: NGINX currently listens on TCP port :8686 and :9696"
+echo "@ASH: THIS MUST BE DISABLED FOR THE WEB-APP AND API-APP TO WORK!"
+echo "@ASH: Please remove it from: /etc/nginx/sites-enabled/demo.ddps.deic.dk"
 
 export DEBIAN_FRONTEND=noninteractive
 

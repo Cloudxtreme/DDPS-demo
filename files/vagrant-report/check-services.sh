@@ -48,13 +48,13 @@ echo
 ## DDPS WEB-app
 echo "-----------------------"
 echo "Is the WEB-app running?"
-echo "I don't know... Please write a check!"
+echo "@ASH: I don't know... Please write a check!"
 echo
 
 ## DDPS API-app
 echo "-----------------------"
 echo "Is the API-app running?"
-echo "I don't know... Please write a check!"
+echo "@ASH: I don't know... Please write a check!"
 echo
 
 
@@ -63,7 +63,7 @@ echo
 echo "-----------------------------------------------"
 echo "TCP services listeing on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
-echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9998, :9999)"
+echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9898, :9999)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
