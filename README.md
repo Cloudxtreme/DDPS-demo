@@ -3,7 +3,7 @@ This repository builds a VM running on VirtualBox using Vagrant. The VM is a dem
 
 The project is primarily for developers of DDPS, but others are welcome to check it out.
 
-### Requiremnts
+### Requirements
 You need the following elements installed:
 
   * [VirtualBox](https://www.virtualbox.org)
@@ -12,7 +12,13 @@ You need the following elements installed:
 They both work on Windows, MacOS and Linux -- are both free, and easy to install.
 
 #### Demo time
-To see a demonstration, just type the following into a modern browse:
+To see a demonstration, first install the requirements above and then type the following into your terminal:
+
+    $ git clone https://github.com/deic-dk/DDPS-demo
+    $ cd DDPS-demo
+    $ vagrant up
+
+When the VM is finished provisioning (it takes a while) type the following into a modern browser:
 
 http://ddps.deic.dk
 
@@ -68,11 +74,11 @@ Only NGINX is allowed to listen on 0.0.0.0, since it functions as a reverse prox
 
 
 ## Using Vagrant
-After you have installed VirtualBox and Vagrant, you can provision a demo DDPS VM from this directory (using the Vagrantfile).
-
-**It's important that you are standing in the directory containing the Vagrantfile!**
-
 Vagrant has a lot of options, just run `$ vagrant` to see all the options.
+
+**It's important that you are standing in the directory containing this git repository**
+
+This ensures that the correct Vagrantfile is used when running vagrant commands.
 
 ### Provision a VM using Vagrant with
 
@@ -98,20 +104,20 @@ You can also just halt/shutdown the image from inside the VM.
 
 ### Continue later with the same VM
 
-    $ cd [This git repo]
+    $ cd [this git repository]
     $ vagrant up
 
-Do not start the machine from VirtualBox. Always start the VM using `vagrant up`, or the Vagrantfile wont load!
+Do not start the machine from VirtualBox. Always start the VM using `$ vagrant up`, or the Vagrantfile wont load!
 
 ### If you want to start over with a fresh version of the VM (a new provisioning)
 
-    $ cd [This git repo]
-    $ vagrant destroy     # use `vagrant destroy -f` if you don't want confirmation
+    $ cd [this git repository]
+    $ vagrant destroy     # use `$ vagrant destroy -f` if you don't want confirmation
     $ vagrant up
 
 And a fresh new install is ready for you. All your changes to the old VM is gone!
 
-Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's when running `vagrant halt` or `vagrant destory`. You have to remove them yourself! Delete them with route delete or reboot your system, if you want to make sure they are gone.
+Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's when running `$ vagrant halt` or `$ vagrant destory`. You have to remove them yourself! Delete them with route delete or reboot your system, if you want to make sure they are gone.
 
 Remove OS routes on macOS:
 
@@ -122,7 +128,7 @@ Remove OS routes on macOS:
 
     $ vagrant provision
 
-It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent. The safeste though is to run: $ `vagrant destroy -f` && `vagrant up`.
+It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent. The safeste though is to run: `$ vagrant destroy -f && vagrant up`.
 
 
 # Debugging for developers
@@ -132,12 +138,12 @@ If you are responsible for maintaining the DDPS-demo VM, the following are nice 
 Watch the output when running `$ vagrant up`. Look for the colors in your terminal. If you use default colors (black on white):
 
   * BLACK:  Output from the Vagrant box image (made by Ubuntu).
-  * YELLOW: Output from VirtualBox/Vagrant.
+  * YELLOW: Output from VirtualBox.
   * GREEN:  Output from provisioning the VM (from running: provision-vm.sh). Watch these!
   * RED:    Errors of some kind (please fix them)!
 
 ### Errors during boot
-Check the ubuntu-console.log for errors during boot. It will be located in this directory. Verify this file after running $ `vagrant reload` when you think you are all done. To make sure all services are started correctly after a reboot.
+Check the ubuntu-console.log for errors during boot. It will be located in this directory. Verify this file after running `$ vagrant reload` when you think you are all done. To make sure all services are started correctly after a reboot.
 
 ### Got root?
 When using Vagrant you login as the user vagrant. If you need root access the vagrant user has `sudo` access.
@@ -167,7 +173,7 @@ If you have a service running inside the VM (PostgreSQL, pgpool-II or Node.js ap
 
 Make sure your service is running on: 127.0.0.1 **NOT** ::1 (IPv6) - and that it is listing on the correct port!
 
-NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `vagrant ssh` might not work. Pgpool-II can be ignored, since we only run one VM for the demo.
+NGINX (and SSH) are the only exceptions to this rule. NGINX must redirect traffic to the WEB and API-apps. Don't change SSH-settings or `$ vagrant ssh` might not work. Pgpool-II can be ignored, since we only run one VM for the demo.
 
 ### Debug network issues
 How can I see that the VM receives my network traffic? 
@@ -206,7 +212,7 @@ On Windows.
     $ vagrant up --debug 2>&1 | Tee-Object -FilePath ".\vagrant.log"
 
 ### Working with Vagrant Box images
-Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `vagrant` to list, update and remove them:
+Instead of building a virtual machine from scratch, which would be a slow and tedious process, Vagrant uses a base image to quickly clone a virtual machine. The boxes are located in ~/.vagrant.d/boxes - but you can use `$ vagrant` to list, update and remove them:
 
     - List all Vagrant Box images:
       $ vagrant box list
