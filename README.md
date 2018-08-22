@@ -114,13 +114,13 @@ Vagrant -- for some reason -- does **NOT** delete routes from your OS to VM's wh
 Remove OS routes on macOS:
 
     $ sudo route delete 130.225.242.200/29
-    $ sudo route delete 172.22.86.8/30     # if you are DeiC employee, and have enabled the private_network in the Vagrantfile
+    $ sudo route delete 172.22.86.8/30     # if you are a DeiC employee, and have enabled the private_network in the Vagrantfile
 
 ### If you need to quickly reprovisioin for testing
 
     $ vagrant provision
 
-It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent. The safeste is to run: $ `vagrant destroy -f` && `vagrant up`.
+It will rerun all the provision-vm.sh. Please make sure that all install scripts are idempotent. The safeste though is to run: $ `vagrant destroy -f` && `vagrant up`.
 
 
 # Debugging for developers
