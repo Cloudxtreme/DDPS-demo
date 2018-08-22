@@ -127,10 +127,11 @@ It will rerun all the provision-vm.sh. Please make sure that all install scripts
 If you are responsible for maintaining the DDPS-demo VM, the following are nice to know.
 
 ### Colors during the Vagrant provisioning
-Watch the output when running `$ vagrant up`. Look for the colors in your terminal. If you use default colors:
+Watch the output when running `$ vagrant up`. Look for the colors in your terminal. If you use default colors (black on white):
 
-  * NORMAL: Output from the Vagrant box image (made by Ubuntu).
-  * GREEN:  Output from provisioning the VM (all the install and configure scritps).
+  * BLACK:  Output from the Vagrant box image (made by Ubuntu).
+  * YELLOW: Output from VirtualBox/Vagrant.
+  * GREEN:  Output from provisioning the VM (from running: provision-vm.sh). Watch these!
   * RED:    Errors of some kind (please fix them)!
 
 ### Errors during boot
