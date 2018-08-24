@@ -45,16 +45,22 @@ echo "Is NGINX running?"
 /usr/sbin/service nginx status |grep Active:
 echo
 
+## PM2
+echo "-----------------------------------"
+echo "Is the PM2 process manager running?"
+systemctl status pm2-vagrant
+echo
+
 ## DDPS WEB-app
 echo "-----------------------"
 echo "Is the WEB-app running?"
-echo "@ASH: I don't know... Please write a check!"
+echo "@ASH: I don't know..? Please write a check!"
 echo
 
 ## DDPS API-app
 echo "-----------------------"
 echo "Is the API-app running?"
-echo "@ASH: I don't know... Please write a check!"
+echo "@ASH: I don't know..? Please write a check!"
 echo
 
 
