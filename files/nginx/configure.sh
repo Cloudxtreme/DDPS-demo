@@ -19,15 +19,9 @@ ENABLED=${CONFDIR}'/sites-enabled'
 CONFFILE='demo.ddps.deic.dk'
 CONFBAK=${AVAILABLE}/${CONFFILE}.${DATO}
 
-# pool_hba.conf
-TMPLHBAFILE='pool_hba.conf.tmpl'
-CONFHBAFILE='pool_hba.conf'
-CONFHBABAK='pool_hba.conf.'${DATO}
-
 ( 
 	. ${FILESDIR}/nginx/env.sh
 	envsubst < ${TMPLPATH}/${TMPLFILE} > ${TEMPDIR}/${CONFFILE}
-	#envsubst < $TMPLPATH/$TMPLHBAFILE > $TEMPDIR/$CONFHBAFILE
 )
 
 # Backup files
@@ -54,8 +48,3 @@ rm -fv ${ENABLED}/default
 
 # Reload configuration
 systemctl restart nginx
-
-# For test print status
-systemctl status nginx
-
-netstat -tulpn

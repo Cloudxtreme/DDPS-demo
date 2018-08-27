@@ -1,9 +1,5 @@
 #!/bin/bash
 #set -x
-echo "@ASH: NGINX currently listens on TCP port :8686 and :9696 for testing"
-echo "@ASH: THIS MUST BE DISABLED FOR THE WEB-APP AND API-APP TO WORK!"
-echo "@ASH: Please remove it from: files/nginx/demo.ddps.deic.dk.tmpl"
-echo "@ASH: It's the: 'server { listen $LOCALHOST:$LOCALPORT1(2) }'.. part"
 
 export DEBIAN_FRONTEND=noninteractive
 
