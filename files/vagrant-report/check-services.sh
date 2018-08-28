@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# This script checks various services and reports back to user during provision.
-
-# Check for running services
+# This script checks various services and reports back to the user during provision.
 
 ## PostgreSQL
-echo "----------------------"
+echo "--------------------------------------------------------------------------------"
 echo "Is PostgreSQL running?"
 /bin/systemctl status postgresql
 echo
@@ -19,7 +17,7 @@ fi
 echo
 
 ## Pgpool-II
-echo "---------------------"
+echo "--------------------------------------------------------------------------------"
 echo "Is Pgpool-II running?"
 /bin/systemctl status pgpool2
 echo
@@ -40,35 +38,34 @@ fi
 echo
 
 ## NGINX
-echo "-----------------"
+echo "--------------------------------------------------------------------------------"
 echo "Is NGINX running?"
 /bin/systemctl status nginx
 echo
 
 ## DDPS API-app
-echo "-----------------------"
+echo "--------------------------------------------------------------------------------"
 echo "Is the API-app running?"
 /bin/systemctl status api.node.service
 echo
 
 ## DDPS WEB-app
-echo "-----------------------"
+echo "--------------------------------------------------------------------------------"
 echo "Is the WEB-app running?"
 /bin/systemctl status web.node.service
 echo
 
 
-# Check that network services are running correctly
 ## Check for IPv4 TCP services running ONLY on localhost
-echo "----------------------------------------------------"
-echo "TCP services listeing only on localhost (127.0.0.1):"
+echo "--------------------------------------------------------------------------------"
+echo "TCP services listeing only on localhost (127.0.0.1) in the ddps-demo VM:"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
 echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9898, :9999)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
-echo "---------------------------------------------------"
-echo "TCP services listening on all interfaces (0.0.0.0):"
+echo "--------------------------------------------------------------------------------"
+echo "TCP services listening on all interfaces (0.0.0.0) in the ddps-demo VM:"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1 |sort -n
 echo "It should only be SSH(:22) and NGINX(80, :8080 & :9090)"
 echo

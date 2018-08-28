@@ -19,6 +19,7 @@ export FILES_DIR=${VAGRANT_DIR}'/files'
 echo "#########################################################"
 echo "# Executing each install.sh script for each application #"
 echo "#########################################################"
+echo
 
 echo "########## Installing: OS Patches ##########"
   /bin/bash ${FILES_DIR}/os-patches/install.sh
@@ -51,10 +52,10 @@ echo "########## Installing: WEB-app ##########"
   /bin/bash ${FILES_DIR}/web-app/install.sh
 echo
 
-
 echo "###########################################################"
 echo "# Configuring some applications from configure.sh scripts #"
 echo "###########################################################"
+echo
 
 # Pgpool-II should be configured after PostgreSQL but before database restore
 if [ -f ${FILES_DIR}/postgresql/configure.sh ]; then
@@ -74,10 +75,9 @@ echo "##########################################################"
 echo "# Verifying services are started and listening correctly #"
 echo "##########################################################"
 
-echo "########## Checking: Running services ##########"
+echo 
   /bin/bash ${FILES_DIR}/vagrant-report/check-services.sh
 echo
-
 
 echo "#########################################################"
 echo "# Installation complete: Please check the output above! #"
