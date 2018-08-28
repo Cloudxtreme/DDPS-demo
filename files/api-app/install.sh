@@ -25,5 +25,5 @@ cp -af "${PKG_DIR}" "${NODE_HOME_DIR}"
 # Configure the application after installing, by running the configure.sh script
 # Could also be run from provision-vm.sh if you need other applications
 # installed before configuring
-echo "Running configure.sh to setup application"
+echo "Running configure.sh to setup the application/service"
 "${PKG_DIR}/configure.sh"
