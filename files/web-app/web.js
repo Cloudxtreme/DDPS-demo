@@ -1,10 +1,18 @@
 #!/usr/bin/env nodejs
 
-var http = require('http');
+// This Node.js app runs a demo WEB app
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello from the WEB-app!\n');
-}).listen(8686, 'localhost');
+const http = require('http');
 
-console.log('Server running at http://localhost:8686/');
+const hostname = process.env.NODE_WEB_IP || '0.0.0.0'; // use NODE_WEB_IP from systemd web.node.service file
+const port = process.env.NODE_WEB_PORT || 8080;        // use NODE_WEB_PORT from systemd web.node.service file
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello from the WEB-app\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});

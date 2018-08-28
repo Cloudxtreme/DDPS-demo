@@ -181,7 +181,7 @@ How can I see that the VM receives my network traffic?
 When typing http://ddps.deic.dk into a browser, and you want to verify that the VM receives the traffic:
 
     $ vagrant ssh                          # log in to the VM
-    $ sudo tcpdump -ni enp0s3 tcp port 80  # tcpdump for traffic on TCP port 80, change port number if you need another port
+    $ sudo tcpdump -ni enp0s8 tcp port 80  # tcpdump for traffic on TCP port 80, change port number if you need another port
     type http://ddps.deic.dk into your browser or press reload
 
 You should now see traffic in your tcpdump on the VM. If not check your Vagrantfile and see if the ports you need are forwarded.

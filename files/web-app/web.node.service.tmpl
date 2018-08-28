@@ -1,0 +1,22 @@
+# All variables are configured from the env.sh file during provision-vm.sh
+[Unit]
+Description=$NODE_APP_DESCRIPTION
+Requires=pgpool2.service
+After=pgpool2.service
+
+[Service]
+ExecStart=$NODE_BIN $NODE_HOME_DIR/$PKG_NAME/$NODE_APP
+WorkingDirectory=$NODE_HOME_DIR
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=$NODE_APP_DESCRIPTION
+# Change to a non-root user (optional, but recommended)
+User=$NODE_USER
+Group=$NODE_GROUP
+# Set Environment options for Node.js
+Environment=NODE_ENV=$NODE_ENVIRONMENT NODE_WEB_IP=$NODE_IP NODE_WEB_PORT=$NODE_PORT
+
+[Install]
+WantedBy=multi-user.target

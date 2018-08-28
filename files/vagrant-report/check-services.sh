@@ -7,7 +7,7 @@
 ## PostgreSQL
 echo "----------------------"
 echo "Is PostgreSQL running?"
-/usr/sbin/service postgresql status |grep Active:
+/bin/systemctl status postgresql
 echo
 echo "Is PostgreSQL configuration OK?"
 HBA_FILE=`sudo su postgres -c "psql -t -P format=unaligned -c 'show hba_file';"`
@@ -21,9 +21,9 @@ echo
 ## Pgpool-II
 echo "---------------------"
 echo "Is Pgpool-II running?"
-/usr/sbin/service pgpool2 status |grep Active:
+/bin/systemctl status pgpool2
 echo
-echo "Connecting to PostgreSQL via Pgpool-II and reading database"
+echo "Connecting to PostgreSQL via Pgpool-II and reading lines in database:"
 export PGPASSWORD="password"
 Q="select pg_is_in_recovery();"
 Q="SELECT
@@ -42,30 +42,24 @@ echo
 ## NGINX
 echo "-----------------"
 echo "Is NGINX running?"
-/usr/sbin/service nginx status |grep Active:
-echo
-
-## PM2
-echo "-----------------------------------"
-echo "Is the PM2 process manager running?"
-systemctl status pm2-vagrant
-echo
-
-## DDPS WEB-app
-echo "-----------------------"
-echo "Is the WEB-app running?"
-echo "@ASH: I don't know..? Please write a check!"
+/bin/systemctl status nginx
 echo
 
 ## DDPS API-app
 echo "-----------------------"
 echo "Is the API-app running?"
-echo "@ASH: I don't know..? Please write a check!"
+/bin/systemctl status api.node.service
+echo
+
+## DDPS WEB-app
+echo "-----------------------"
+echo "Is the WEB-app running?"
+/bin/systemctl status web.node.service
 echo
 
 
 # Check that network services are running correctly
-## Check for IPv4 TCP services running on localhost
+## Check for IPv4 TCP services running ONLY on localhost
 echo "----------------------------------------------------"
 echo "TCP services listeing only on localhost (127.0.0.1):"
 /bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
