@@ -59,13 +59,13 @@ echo
 ## Check for IPv4 TCP services running ONLY on localhost
 echo "--------------------------------------------------------------------------------"
 echo "TCP services listeing only on localhost (127.0.0.1) in the ddps-demo VM:"
-/bin/netstat -an |grep "tcp " |grep " LISTEN " |grep 127.0.0.1 |sort -n
+/bin/netstat -plnt4 |grep 127.0.0.1 |sort -n
 echo "It should be PostgreSQL(:5432), WEB-app(:8686), API-app(:9696) and pgpool-II(:9898, :9999)"
 echo
 
 ## Check for TCP services running on 0.0.0.0 (all interfaces)
 echo "--------------------------------------------------------------------------------"
 echo "TCP services listening on all interfaces (0.0.0.0) in the ddps-demo VM:"
-/bin/netstat -an |grep "tcp " |grep " LISTEN " |grep -v 127.0.0.1 |sort -n
+/bin/netstat -plnt4 |grep -v 127.0.0.1 |sort -n
 echo "It should only be SSH(:22) and NGINX(80, :8080 & :9090)"
 echo
